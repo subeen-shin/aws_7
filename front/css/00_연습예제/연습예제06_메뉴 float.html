@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>메뉴 float</title>
+	<!-- <style>
+		.link-menu{ color: black; text-decoration: none; }
+		.link-menu:hover {text-decoration: underline;}
+		.item-menu {border: 3px solid black ; height: 100px; width: 50%; text-align: center;}
+	
+
+
+	</style> -->
+	<style>
+		.list-menu{ border: 3px solid rgb(0, 0, 0)}
+		.list-menu>li:first-of-type{ background: blue;}
+		.list-menu>li:last-of-type{ background: green;}
+		.item-menu{ height: 100px; float: left; width: 33.33%; box-sizing: border-box;
+		text-align: center; line-height: 50px;}
+		.list-menu::after{ clear: both; content:''; display: block;}
+		.item-menu ~ .item-menu{ border-left: 3px solid black;}
+		.item-menu:hover > .link-menu{ text-decoration: underline;}
+		ul{ list-style: none; padding: 0;}
+
+
+
+
+	</style>
+</head>
+<body>
+	<!-- 
+	메뉴 글자색은 검은색이고 밑줄 없음, hover하면 밑줄추가
+	메뉴 높이 50px 
+	테두리 두께는 3px
+	주의사항 : 메뉴와 메뉴사이의 테두리가 두꺼워지지 않도록 작업-->
+
+	<header>
+		<nav>
+			<ul class="list-menu">
+				<li class="item-menu">
+					<a href="#" class="link-menu">메뉴1</a>
+				</li>
+				<li class="item-menu">
+					<a href="#" class="link-menu">메뉴2</a>
+				</li>
+				<li class="item-menu">
+					<a href="#" class="link-menu">메뉴3</a>
+				</li>
+			</ul>
+		</nav>
+	</header>
+
+
+
+ <ul class="list-menu">
+		<li class="item-menu">1</li>
+		<li class="item-menu">2</li>
+		<li class="item-menu">3</li>
+</ul>
+</body>
+</html>
