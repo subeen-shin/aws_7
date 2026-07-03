@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+
+	<style>
+		.container{ border: 3px solid red}
+		.container>div:first-of-type{ background: blue;}
+		.container>div:last-of-type{ background: green;}
+		.box{ height: 100px; float: left; width: 50%;}
+		.container::after{ clear: both; content:''; display: block;}
+
+
+
+	</style>
+</head>
+<body>
+	<!-- box의 높이는 100px로 정하고 container 안에 두 박스가 배치되도록 작성 -->
+	<div class="container">
+		<div class="box">1</div>
+		<div class="box">2</div>
+</div>
+</body>
+
+</html>
