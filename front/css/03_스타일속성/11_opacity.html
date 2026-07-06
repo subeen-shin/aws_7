@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>오퍼시티 예제</title>
+	<style>
+		/* 
+		opacity (p.156)
+		- 요소 사이의 투명도를 설정 
+		- 0~1사이의 실수값을 지정. 0.01,0.3등
+		- 0이면 투명, 1이면 불투명
+		- 부모 요소에 적용된 투명도가 자식 요소에도 적용
+
+		*/
+	.warp{
+		/* box의 기준이 되기 위해 */
+		position: relative; height: 50px;
+	}
+	.box{
+		/* h1태그를 가리기 위해서 */
+		position: absolute;
+		/* top bottom을 이용하여 높이 지정 */
+		top: 0; bottom: 0;
+		/* left right를 이용하여 너비 지정 */
+		left: 0; right: 0;
+		background-color: brown;
+		/* h1 태그가 조금 보이도록 투명도를 조절 */
+		opacity: 1;
+	}
+	/* 빨간 배경에 마우스를 hover하면 반투명이 되도록(투명도 0.3) */
+.box:hover{
+	opacity: 0.3;
+}
+.container2{
+	height: 50px; line-height: 50px; font-weight: bold;
+	font-size: 30px; background-color: red;
+	opacity: 0.5;
+}
+.box2{
+	/* 여기서 투명도를 1로 해도 부모가 0.5이어서 
+	실제 적용되는 투명도는 부모보다 높을 수 없음 
+	*/
+	opacity: 1;
+}
+.container3{
+	height: 50px; line-height: 50px; font-weight: bold;
+	font-size: 30px; background-color: rgb(255, 149, 165);
+}
+	</style>
+</head>
+<body>
+	<h1>투명도 예제</h1>
+	<div class="container1">
+		<div class="warp">
+			<h1>안녕하세요.</h1>
+			<div class="box"></div>
+		</div>
+	</div>
+	<h1>투명도 예제2</h1>
+	<!-- 
+	자식 요소의 투명도는 부모보다 선명할 수 없다
+	=> 부모의 투명도가 0.5이면 자식의 투명도를 1로 해도
+	1처럼 진하게 안보임 -->
+	<div class="container2">
+		<div class="box2">opacity</div>
+	</div>
+		<div class="container3">
+		<div class="box2">배경 색상에 rgba() 이용</div>
+	</div>
+</body>
+</html>
