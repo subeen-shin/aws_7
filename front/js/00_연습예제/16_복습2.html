@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<button class="minus">-</button>
+		<span class="box">1</span>
+		<span>/</span>
+		<span class="max">6</span>
+		<button class="plus">+</button>
+
+	<!--
+		+ 버튼을 클릭하면 
+	 - 박스에 숫자가 1씩 증가
+	 - 최대 6까지 증가
+	 - 6에서 +를 누르면 1로 수정 
+	 
+	 - 버튼을 클릭
+	 - 박스에 숫자가 1씩 감소
+	 - 최소 1까지 감소
+	 - 1에서 -를 누르면 6으로 수정-->
+
+
+	<script>
+		//-버튼 선택
+		const 마이너스버튼 = document.querySelector('.minus');
+
+		//+버튼 선택
+		const 플러스버튼 = document.querySelector('.plus');
+		//박스 선택
+		const 박스 = document.querySelector('.box');
+		//최대값이 있는 박스 선택
+		const 최대박스 = document.querySelector('.max');
+		const MAX_PAGE = parseInt(최대박스.textContent);
+		
+			// 버튼에 클릭 이벤트를 등록
+			플러스버튼.addEventListener('click', function(){
+				
+			// 박스에 있는 텍스트를 가져옴
+				let text =	박스.textContent;
+		
+			// 가져온 텍스트를 정수로 변환(parseInt)
+			let num =  parseInt(text);
+		
+			// 정수를 1씩 감소
+		
+
+		});
+
+
+
+	</script>
+</body>
+</html>
