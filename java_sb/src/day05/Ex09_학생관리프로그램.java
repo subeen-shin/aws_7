@@ -79,7 +79,7 @@ public class Ex09_학생관리프로그램 {
 		++학생수;
 		return 학생수;
 	}
-	
+	   
 	public static void printStudent(학생[] 성적관리) {
 		int i = 0;
 		for(학생 성적 : 성적관리) {
