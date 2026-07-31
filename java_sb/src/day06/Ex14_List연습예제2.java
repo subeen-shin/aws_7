@@ -27,7 +27,7 @@ public class Ex14_List연습예제2 {
 		for( ; list.size() < size ; ) {
 			//정수를 입력 받음
 			int num = scan.nextInt();
-			//입력 받은 저수가 리스트에 없으면 추가	
+			//입력 받은 정수가 리스트에 없으면 추가	
 			if(!list.contains(num)) {
 				list.add(num);
 			}
