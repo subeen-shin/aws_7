@@ -58,6 +58,36 @@ update product set amount = amount -1 where code = 'ACC002';
 delete from cart where id = 'abc123' and code =  'ACC001';
 delete from cart where id = 'abc123' and code =  'ACC002';
 
+# abc123회원이 ACC001, ACC002 제품을 장바구니에 담음 
+insert into cart( amount, id, code) values(2, 'abc123' , 'ACC001');
+insert into cart( amount, id, code) values(1, 'abc123' , 'ACC002');
+
+# 다음 회원을 추가 
+# 아이디 : asdasd, 비번 asdasd, 이메일 : asdasd@naver.com
+# 번호 : 011-9999-9999
+insert into user(id, pw, email, phone)
+values ('asdasd', 'asdasd', 'asdasd@naver.com', '011-9999-9999');
+
+# asdasd회원이 ACC001 제품을 2개 구매
+insert into buy(code, amount, id) 
+values('ACC001', 2, 'asdasd');
+
+# 제품 수량 변경
+update product set amount = amount - 2 where code = 'ACC001';
+
+# 악세서리 -  제품명 : 백금목걸이, 내용 : 백금 목걸이입니다. 가격 : 50000, 썸네일 없음 
+insert into product(code, name, content, price, thumbnail, ca_code2)
+values ('ACC003', '백금목걸이','백금 목걸이입니다.', 50000, null, 'ACC');
+
+# 악세서리 -  제품명 : 커플반지, 내용 :  커플반지입니다. 가격 : 150000, 썸네일 없음 
+insert into product(code, name, content, price, thumbnail, ca_code2)
+values ('ACC004', '커플반지','커플반지입니다.', 150000, null, 'ACC');
+
+# 악세서리 -  제품명 : 돌반지, 내용 : 돌반지입니다. 가격 : 350000, 썸네일 없음 
+insert into product(code, name, content, price, thumbnail, ca_code2)
+values ('ACC005', '돌반지','돌반지입니다.', 350000, null, 'ACC');
+
+
 select * from buy;
 select * from cart;
 select * from product;
