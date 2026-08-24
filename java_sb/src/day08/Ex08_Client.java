@@ -86,5 +86,8 @@ public class Ex08_Client {
 	   } catch(Exception e) {
 		   
 	   }
+	   finally {
+		   close();
+	   }
    }
 }
