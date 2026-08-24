@@ -14,7 +14,7 @@
 <body>
 	<app-header></app-header>
 	<div class="container">
-		<h1>게시글 등록</h1>
+		<h1>게시글 수정</h1>
 		<form id="insertForm">
 			<!-- 게시판, 제목, 내용, 첨부파일(지금은 생략), 작성자(로그인 기능 구현 후 제거) -->
 			<div class="form-group mb-3">
@@ -38,6 +38,10 @@
 			<button class="btn btn-outline-success col-12">게시글 등록</button>
 		</form>
 	</div>
+	
+	<script>
+	getPost();
+	</script>
 	
 	<!-- 게시판 목록 가져와서 화면에 출력 -->
 	<script>
@@ -107,7 +111,7 @@
 					}
 					const result = await response.text();
 					alert(result);
-					//location.href = "/post/detail.html";
+					location.href = "/post/detail.html?num="+postId;
 				
 				}catch(e){
 					 console.log("예외처리 : ", e);
