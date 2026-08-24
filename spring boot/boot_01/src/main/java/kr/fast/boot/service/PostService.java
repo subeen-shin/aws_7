@@ -40,21 +40,68 @@ public class PostService {
 			//레포야 엔티티줄게 저장해
 			postRepository.save(post);
 		}
-
+		
+		@Transactional
 		public List<Post> getPostList() {
 			//내림차순=> 최신 게시글이 제일 처음
-			List<Post> list = postRepository.findAllByOrderByIdDesc();
+			List<Post> list = postRepository.findAllByIsDeletedOrderByIdDesc("N");
 			//List<Post> list = postRepository.findAll();//오름차순=> 최신 게시글이 제일 마지막
 			return list;
 		}
-
+		
+		@Transactional
 		public Post getPost(int id) {
 			Post post
 			= postRepository.findById(id)
 				.orElseThrow(()-> new IllegalArgumentException("게시글이 존재하지 않습니다."));
 			return post;
 		}
-}
+		
+		@Transactional
+		public void updateView(int id) {
+			//게시글 엔티티를 가져옴
+ 			Post post = getPost(id); 
+ 			//조회수 증가
+ 			post.updateView();
 			
+		}
+		
+		@Transactional
+		public void deletePost(int id) {
+			//레포야 게시글 가져와 id 줄게. 없으면 예외 발생
+			Post post
+			= postRepository.findById(id)
+				.orElseThrow(()-> new IllegalArgumentException("게시글이 존재하지 않습니다."));
+			
+			//이미 삭제된 게시글이면 예외를 발생
+			if(post.getIsDeleted().equals("Y")) {
+				throw new IllegalArgumentException("이미 삭제된 게시글입니다.");
+			}
+			//레포야 게시글 삭제해줘 게시글 줄게
+			//소프트 삭제: 실제 데이터 안지움
+			post.delete();
+			
+			//직접 데이터 지움
+			//postRepository.delete(post);
+		}
+		
+		@Transactional
+		public void updatePost(int id, PostDTO dto) {
+			//id와 일치하는 게시글을 가져옴
+			Post post = postRepository.findById(id)
+					.orElseThrow(()-> new IllegalArgumentException("등록되지 않은 게시글입니다.")); 
+			//수정할 제목과 내용 체크
+			if(dto == null || !dto.checkTitleValid()) {
+				throw new IllegalArgumentException("제목을 입력하세요."); 
+			}
+			if(!dto.checkContentValid()) {
+				throw new IllegalArgumentException("내용을 입력하세요."); 
+			}
+			//게시글의 제목과 내용을 수정
+			post.update(dto.title(), dto.content());
+			
+		}
+}
+	
 			
 			
