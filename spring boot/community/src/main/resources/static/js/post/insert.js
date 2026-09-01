@@ -31,7 +31,9 @@ async function getBoardsAndDisplay() {
         console.error(e);
     }
 }
-
+/* ========================
+게시글을 등록하는 함수
+======================== */
 async function insertPost(e) {
     e.preventDefault();
 
@@ -51,20 +53,36 @@ async function insertPost(e) {
         alert("내용을 입력하세요.");
         return;
     }
+	
+	//게시글과 첨부파일을 하나로 합침
+	const formData = new FormData();
+	
+	const jsonBlob = new Blob([JSON.stringify(data)], 
+	{type : "application/json"});
+	formData.append("post", jsonBlob);
+	
+	const 첨부파일요소들 = document.querySelectorAll("[name=files]");
+	첨부파일요소들.forEach(첨부파일요소=>{
+		const 첨부파일들 = 첨부파일요소.files;
+		for(let i = 0; i < 첨부파일들.length; i++){
+			formData.append("files", 첨부파일들[i])
+		}
+	});
+	
+	
+	
 	//서버로 게시판 등록 요청
 	try {
 	        //게시판 게시글 등록 요청
 	        const response = await authFetch(`/api/posts`, {
 	            method: "post",
-	            headers: {
-	                "Content-Type": "application/json"
-	            },
-	            body: JSON.stringify(data)
-	        })
+	            body: formData
+	        });
+			
 	        const result = await response.json();
 			alert(result.message);
 			if(result.success){
-				loction.href ="/post/list.html";
+				location.href ="/post/list.html";
 			}
 	       
 	        
