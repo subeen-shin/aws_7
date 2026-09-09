@@ -16,6 +16,7 @@ function App2() {
 
 	const changeNum = amount => {
 		if(amount > 0){
+			//setter에 함수를 주어서 값을 바꿈. 조금 더 안전함
 			setNum(num=>num+1); 
 		}
 		else{
