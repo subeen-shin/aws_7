@@ -1,6 +1,10 @@
 
 import ReactDOM from 'react-dom/client';
-import Ex5Menu from './Ex5Menu';
+import { App9UseContext } from './App9UseContext';
+//import Ex5Menu from './Ex5Menu';
+//import App6UseRef from './App6UseRef';
+//import App7UseEffect from './App7UseEffect';
+// import App8UseMemo from './App8UseMemo';
 //import App5State from './App5State';
 //import Ex4ToDoList2 from './Ex4ToDoList2';
 //import Ex1 from './Ex1';
@@ -17,15 +21,19 @@ root.render(
   //App이라는 컴포넌트
   //컴포넌트 특징 태그처럼 생김
   //시작을 대문자로 함
-   // <App />
-   // <App2 />
+  // <App />
+  // <App2 />
   // <App3 />
-   //<App4 />
-   // <Ex1 />
+  //<App4 />
+  // <Ex1 />
   //<Ex2ArrayMap />
   //<Ex3ToDoList />
   //<Ex4ToDoList2 />
- //<App5State />
- <Ex5Menu />
+  //<App5State />
+  //<Ex5Menu />
+ // <App6UseRef />
+ // <App7UseEffect />
+//  <App8UseMemo />
+<App9UseContext/>
 );
 

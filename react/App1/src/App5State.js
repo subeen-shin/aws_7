@@ -12,7 +12,7 @@ function App5State(){
 				<div>
 					<input type="text" disabled={isReadOnly} />
 				</div>
-				<div className={`box ${isReadOnly?"hidden":""}`}></div>
+				<div className={`box ${isReadOnly?"hidden" : ""}`}></div>
 		</div>
 	)
 }
