@@ -3,6 +3,10 @@ import MyPagination from "./page/MyPagination";
 import Container from "react-bootstrap/esm/Container";
 import Spinner from 'react-bootstrap/Spinner';
 import Table from 'react-bootstrap/Table';
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+import InputGroup from 'react-bootstrap/InputGroup';
+import { Link } from "react-router-dom";
 
 
 async function getPosts(data, setPm, setIsLoading){
@@ -39,18 +43,48 @@ function PostList(){
 
    
     useEffect(() =>{
-      getPosts(data, setPm, setIsLoading);
-    }, [data]);
+      if(isLoading){
+         getPosts(data, setPm, setIsLoading);
+      }
+    }, [isLoading]);
+
 
     const clickHandler = (page)=>{
       page = page-1;
       setData({...data, page});
+      setIsLoading(true);
     }
 
-	
+   const inputChange = (e) => {
+      const {name, value} = e.target;
+      setData({...data, [name] : value});
+   }
+   const submitHandler = e =>{
+      e.preventDefault();
+      setIsLoading(true);
+   }
 	return (
 		<Container>
          <h1>게시글</h1>
+         <form>
+            <form onSubmit={submitHandler}></form>
+      <InputGroup className="mb-3">
+         <Form.Select aria-label="Default select example" onChange={inputChange} name="type">
+            <option value="all">전체</option>
+            <option value="title">제목</option>
+            <option value="writer">작성자</option>
+         </Form.Select>
+        <Form.Control
+          placeholder="검색어를 입력하세요"
+          aria-label="검색어를 입력하세요"
+          aria-describedby="basic-addon2"
+          onChange={inputChange} name="keyword"
+        />
+        <Button variant="outline-secondary" id="button-addon2" type="submit">
+          검색
+        </Button>
+      </InputGroup>
+      </form>
          {
             isLoading ?
             <Spinner animation="border" role="status">
@@ -101,10 +135,13 @@ function PostsTable({pm}){
                         return (
                            <tr key={post.id}>
                               <td>{post.id}</td>
+                              <td>
+                                 <Link to={"/post/detail/"+post.id}>{post.title}</Link>
+                              </td>
                               <td>{post.title}</td>
                               <td>{post.memberId}</td>
                               <td>{post.createdAt}</td>
-                              <td>{post.view}</td>
+                              <td>{post.viewCount}</td>
                               <td>{post.upCount}/{post.downCount}</td>
                            </tr>
                         )
