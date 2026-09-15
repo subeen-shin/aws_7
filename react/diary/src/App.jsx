@@ -1,31 +1,73 @@
 import {BrowserRouter, Link, Route, Routes} from "react-router-dom";
-import Home from "./Home";
 import { Signup } from "./component/page/user/Signup";
+import { Login } from "./component/page/user/Login";
+import { Container, Nav, Navbar } from "react-bootstrap";
+import { useAuth } from "./provider/AuthContext";
+import { Diary } from "./component/page/user/Diary";
 
 
 function App() {
-
+  
+  /*
+  //확인용
+  const submitHandler = async ()=>{
+    const accessToken = localStorage.getItem("accessToken");
+		try{
+			const response = await fetch("/a", {
+				method : "GET",
+				headers : {
+					"Authorization" : "Bearer " + accessToken
+				}
+			});
+			const result = await response.json();
+			console.log(result);
+		}catch(e){
+			console.error(e);
+		}
+	}
+  submitHandler();
+  */
   return (
     <BrowserRouter>
-      <ul>
-        <li>
-          <Link to={"/"}>홈</Link>
-        </li>
-         <li>
-          <Link to={"/test"}>회원가입</Link>
-        </li>
-      </ul>
-   
-    <Routes>
-      <Route path="/" element={<Home/>}></Route>
-      <Route path="/test" element={<Signup/>}></Route>
-    </Routes> 
+      <Navbar bg="light" expand="lg" className="shadow-sm mb-4">
+        <Container>
+          <Navbar.Brand as={Link} to="/">
+            MyApp
+          </Navbar.Brand>
+          <Navbar.Toggle aria-controls="main-nav" />
+          <Navbar.Collapse id="main-nav">
+            <Nav className="ms-auto">
+              <Nav.Link as={Link} to="/signup">
+                회원가입
+              </Nav.Link>
+              <Nav.Link as={Link} to="/login">
+                로그인
+              </Nav.Link>
+              <Nav.Link as={Link} to="/diary">
+                다이어리
+              </Nav.Link>
+            </Nav>
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
+      <Routes>
+        <Route path="/" element={<Home/>}></Route>
+        <Route path="/signup" element={<Signup/>}></Route>
+        <Route path="/login" element={<Login/>}></Route>
+        <Route path="/diary" element={<Diary/>}></Route>
+      </Routes>
     </BrowserRouter>
   );
 }
-
-function Test() {
-  return <div><h1>테스트</h1></div>
+function Home(){
+  const {user} = useAuth();
+  return (
+    <div>
+      <h1>홈</h1>
+      {user ? <h2>{user.nickname}님 환영합니다.</h2> : <></>}
+    </div>
+  )
 }
+
 
 export default App;

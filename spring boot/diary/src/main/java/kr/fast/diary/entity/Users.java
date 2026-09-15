@@ -4,8 +4,11 @@ import java.time.LocalDateTime;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import kr.fast.diary.dto.UserDTO;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,25 +20,21 @@ import lombok.NoArgsConstructor;
 public class Users {
 
 	@Id
-	private Long id;
-
-	@Column(name = "password")
-	private String pw;
-
-	@Column(name = "email")
-	private String email;
-
-	@Column(name = "nickname")
-	private String nickname;
+	@Column(name="user_id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	Long userId;
 	
-	@Column(name = "created_at")
-	private LocalDateTime createdAt;
+	String email;
+	String password;
+	String nickname;
+	
+	@Column(name = "created_at", nullable = false)
+	LocalDateTime createdAt = LocalDateTime.now() ;
 
-	public Users(Long id, String pw, String email, String nickname, LocalDateTime createdAt) {
-	    this.id = id;
-	    this.pw = pw;
+
+	public Users(String email, String password, String nickname) {
+	    this.password = password;
 	    this.email = email;
 	    this.nickname = nickname; 
-	    this.createdAt = createdAt;
 	}
 }
