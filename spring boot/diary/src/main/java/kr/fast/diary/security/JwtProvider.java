@@ -66,4 +66,8 @@ public class JwtProvider{
     public String get(String token, String claim) {
     	return parseClaims(token).get(claim, String.class);
     }
+
+	public Object get(String token, String claim, Class<? extends Object> class1) {
+		return parseClaims(token).get(claim, class1);
+	}
 }

@@ -59,4 +59,15 @@ public class AuthController {
 		}
 		return  ResponseEntity.ok(map);
 	}
+	
+	@PostMapping("/diary")
+	public ResponseEntity<Object> diary(@RequestBody UserDTO dto){
+		//DiaryResponse Dr;
+		try {
+    	 
+		}catch(Exception e) {
+    	 
+		}
+		return  ResponseEntity.ok("{}");
+	}
 }
